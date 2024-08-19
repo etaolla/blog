@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incroyable Blog</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            height: calc(100vh - 78px);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .left-column {
+            width: 20%;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-sizing: border-box;
+            border-right: 1px solid #ddd;
+        }
+        .left-column a {
+            display: block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: #006400;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .left-column a:hover {
+            color: #004d00;
+        }
+        .right-column {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+        }
+        .right-column h2 {
+            font-size: 26px;
+            margin-top: 0;
+            color: #006400;
+        }
+        .right-column p {
+            margin-bottom: 20px;
+        }
+        @media screen and (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .left-column {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            .right-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Incroyable Blog</div>
+    <div class="content">
+        <div class="left-column">
+            <a href="#" onclick="loadBlogContent('entry1.html'); return false;">Blog Entry 1</a>
+            <a href="#" onclick="loadBlogContent('entry2.html'); return false;">Blog Entry 2</a>
+            <a href="#" onclick="loadBlogContent('entry3.html'); return false;">Blog Entry 3</a>
+            <a href="#" onclick="loadBlogContent('entry4.html'); return false;">Blog Entry 4</a>
+            <a href="#" onclick="loadBlogContent('entry5.html'); return false;">Blog Entry 5</a>
+        </div>
+        <div class="right-column" id="main-content">
+            <h2>Welcome to the Incroyable Blog</h2>
+            <p>Click on the links to the left to view a blog entry.</p>
+        </div>
+    </div>
+
+    <script>
+        function loadBlogContent(entry) {
+            const baseURL = "https://raw.githubusercontent.com/etaolla/blog/main/";
+            const url = baseURL + entry;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('main-content').innerHTML = data;
+                })
+                .catch(error => {
+                    document.getElementById('main-content').innerHTML = '<p>Error loading blog content.</p>';
+                });
+        }
+    </script>
+</body>
+</html>
 
